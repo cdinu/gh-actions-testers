@@ -19,7 +19,17 @@ jobs:
         echo "{\"orgId\":\"${{ secrets.VERCEL_ORG_ID }}\",\"projectId\":\"${{ secrets.VERCEL_PROJECT_ID }}\"}"> $GITHUB_WORKSPACE/.vercel/project.json
     - name: Generate `.vercel/project.json`
       run: |
-        npx vercel --token ${{ secrets.VERCEL_TOKEN }} --no-clipboard --prod --confirm
+        npx vercel \
+          --token ${{ secrets.VERCEL_TOKEN }} \
+          --no-clipboard --prod --confirm \
+          -m githubCommitSha=${{ github.sha }}, \
+          -m githubCommitAuthorLogin=${{ github.actor }}, \
+          -m githubDeployment=1 \
+          -m githubOrg=${{ github.repository_owner }}, \
+          -m githubRepo=${{ github.repository }}, \
+          -m githubCommitOrg=${{ github.repo.owner }}, \
+          -m githubCommitRepo=${{ github.repository }}, \
+          -m githubCommitRef=${{ github.ref }}, \
 
 
 

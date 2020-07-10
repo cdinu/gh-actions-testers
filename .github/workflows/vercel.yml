@@ -27,13 +27,13 @@ jobs:
           --token ${{ secrets.VERCEL_TOKEN }} \
           --no-clipboard --prod --confirm \
           -m githubCommitSha=${{ github.sha }} \
-          -m githubCommitAuthorLogin=${{ github.actor }} \
+          -m githubCommitAuthorLogin=${{github.actor}} \
           -m githubDeployment=1 \
           -m githubOrg=${{ github.repository_owner }} \
-          -m githubRepo=${{ github.repository }} \
+          -m githubRepo=${GITHUB_REPOSITORY##*/} \
           -m githubCommitOrg=${{ github.repository_owner }} \
-          -m githubCommitRepo=${{ github.repository }} \
-          -m githubCommitRef=${{ github.ref }}
+          -m githubCommitRepo=${GITHUB_REPOSITORY##*/} \
+          -m githubCommitRef=${GITHUB_REF##*/}
 
 
 

@@ -31,7 +31,7 @@ jobs:
           -m githubDeployment=1 \
           -m githubOrg=${{ github.repository_owner }} \
           -m githubRepo=${{ github.repository }} \
-          -m githubCommitOrg=${{ github.repo.owner }} \
+          -m githubCommitOrg=${{ github.repository_owner }} \
           -m githubCommitRepo=${{ github.repository }} \
           -m githubCommitRef=${{ github.ref }}
 
